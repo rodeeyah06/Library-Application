@@ -1,11 +1,12 @@
 package org.example.model;
 
 public class BookRequest {
+
     private User user;
     private String title;
    private long timeStamp;
 
-   public BookRequest(User user, String title, long timeStamp) {
+   public BookRequest(User user, String title) {
        this.user = user;
        this.title = title;
        this.timeStamp = timeStamp;
