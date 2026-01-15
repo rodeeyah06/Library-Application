@@ -9,8 +9,9 @@ public class Book  {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
+
     }
 
     public String getAuthor() {
@@ -38,7 +39,7 @@ public class Book  {
                 '}';
     }
 
-    public Book(String title, String author, int copies) {
+    public Book(String title, int copies) {
         this.title = title;
         this.author = author;
         Copies = copies;

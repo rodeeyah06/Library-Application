@@ -10,18 +10,24 @@ import java.util.Map;
 import java.util.Queue;
 
 public class LibraryWithoutPriority {
-    private Map<Integer, Book> books = new HashMap<>();
+    private Map<String, Book> books = new HashMap<>();
    private Queue<BookRequest> queue = new LinkedList<>();
 
-   public void addBook(String title, String author, int copies) {
-       books.put(Integer.valueOf(title), new Book(title, author, copies));
+    public void addBook(String title, int copies) {
+       books.put(title, new Book(title, copies));
+    }
+    public void requestBook(User user, String title) {
+        queue.offer(new BookRequest(user,title));
+    }
+    public String serveNextRequest(){
+        if(queue.isEmpty()) return "No request";
 
-   }
-   public String requestBook(User user, String title) {
-       if (queue.isEmpty()) return "no request";
+        BookRequest request = queue.poll();
+        Book book = books.get(request.getTitle());
 
-       BookRequest bookRequest = queue.poll();
-       return "";
-   }
+        if(book == null || !book.IsAvailable() ) return "Book has been taken";
+        book.borrowBook();
+        return request.getUser().getName() + " borrowed"+ " "+ request.getTitle();
+    }
 
 }
